@@ -6,6 +6,7 @@
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>GAME FOREST</title>
         <link rel="stylesheet" type="text/css" href="../static/css/style.css?type=css">
+        <link rel="stylesheet" type="text/css" href="../static/css/chat-style.css?type=css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,700">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -13,15 +14,45 @@
         <script src="../static/js/script.js?type=javascript"></script>
     </head>
     <body>
-        <div class="koko">
-            <h1>{error_tag}</h1>
-            <p>HOME PAGE</p>
-            <p>GAME FORESTへようこそ{name}さん
-あなたは{id}番目のチャレンジャーです。</p>
-<p>現在の所有ポイントは{points}点です。
-{fee}点で一回ゲームが遊べます。</p>
-            <a href="/home/game">いますぐ挑戦する</a>
-            <a href="/logout">ログアウト</a>
+        <div class="chat_container">
+            <div class="chat_header">
+                {error_tag}<br>
+                HOME PAGE<br>
+            </div>
+
+            <div id="chat_scroll" class="chat_contents chat_scroll">
+                <div class="chat_opposite">
+                    <figure>
+                    <img src="https://1.bp.blogspot.com/-fyYoL91_tQo/Wp0Nn-VLocI/AAAAAAABKiI/3J2ywEvlbwIhjFNsmF8qpluPOg2it_HAQCLcBGAs/s800/ai_kanabou_buki.png" />
+                    </figure>
+                    <div class="chat_opposite-text">
+                    <div class="name">NPC</div>
+                    <div class="text">GAME FORESTへようこそ{name}さん<br>
+あなたは{id}番目のチャレンジャーです。<br>
+現在の所有ポイントは{points}点です。<br>
+{fee}点で一回ゲームが遊べますがどうしますか？<br>
+                    </div>
+                </div>
+
+                <div class="chat_opposite">
+                    <figure>
+                    <img src="https://1.bp.blogspot.com/-fyYoL91_tQo/Wp0Nn-VLocI/AAAAAAABKiI/3J2ywEvlbwIhjFNsmF8qpluPOg2it_HAQCLcBGAs/s800/ai_kanabou_buki.png" />
+                    </figure>
+                    <div class="chat_opposite-text">
+                    <div class="name">NPC</div>
+                    <div class="text">あなたの番です。</div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <div class='form_send'>
+            <div class="form_contents" style="width: 50%;">
+                <input class="send_btn" type="button" onclick="location.href='/'" value="ログアウト"/>
+            </div>
+            <div class="form_contents" style="width: 50%;">
+                <input class="send_btn" type="button" onclick="location.href='/home/game'" value="ゲームへ参加"/>
+            </div>
         </div>
     </body>
     <footer>

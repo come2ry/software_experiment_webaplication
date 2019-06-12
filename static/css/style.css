@@ -61,26 +61,27 @@ body {
     background-image: url("https://www.el-aura.com/wp-content/uploads/2016/05/349278818-e1462216891605.jpg");
 }
 
-.koko {
+/* .koko {
     background-color:#FFFF99;
     margin-right: auto;
     margin-left : auto;
     width:80%;
     font-size:62.5%;
     filter: drop-shadow(10px 10px 10px rgba(30,30,30,30.30));
-}
+} */
 
 .battle {
-    background-color:#FFFF99;
+    background-color:#FFFFFF;
     margin-right: auto;
     margin-left : auto;
     width:40%;
     font-size:62.5%;
+    color: #000000;
     filter: drop-shadow(10px 10px 10px rgba(30,30,30,30.30));
-    background-image: url("https://photo1.ganref.jp/photo/0/27464beb181743025da38c218fc18a4a/thumb5.jpg");
+    /* background-image: url("https://photo1.ganref.jp/photo/0/27464beb181743025da38c218fc18a4a/thumb5.jpg"); */
 }
 
-.finish {
+/* .finish {
     background-color:#080808 ;
     margin-right: auto;
     margin-left : auto;
@@ -104,4 +105,4 @@ body {
     width:20%;
     font-size:62.5%;
     filter: drop-shadow(10px 10px 10px rgba(30,30,30,30.30));
-}
+} */

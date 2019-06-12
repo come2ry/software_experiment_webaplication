@@ -4,6 +4,7 @@
 
 import sqlite3
 import bcrypt
+import datetime
 import logging
 import sys
 sys.path.append("/var/www/cgi-bin")
@@ -117,7 +118,7 @@ def update_user_points(user_id, points):
 
     return True
 
-####### @yumiya and @tanaka #######
+####### @tanaka #######
 def game_log(game):
     html = ''
     if (game is None):
@@ -137,10 +138,66 @@ def game_log(game):
                 if (game[i]["count"] == 0):
                     pass
                 else:
-                    html += '<p>You {}</p>'.format(game[i]["count"])
+                    html += \
+'''
+<div class="chat_me">
+    <div class="text">{count}</div>
+    <span class="date">既読<br>{time}</span>
+</div>
+
+'''.format(count=game[i]["count"], time='{0:%H:%M}'.format(datetime.datetime.now()))
+        elif (game[i]['turn'] == -1):
+            html += \
+'''
+<div class="chat_opposite">
+    <figure>
+    <img src="https://1.bp.blogspot.com/-fyYoL91_tQo/Wp0Nn-VLocI/AAAAAAABKiI/3J2ywEvlbwIhjFNsmF8qpluPOg2it_HAQCLcBGAs/s800/ai_kanabou_buki.png" />
+    </figure>
+    <div class="chat_opposite-text">
+    <div class="name">NPC</div>
+    <div class="text">次はあなたの番です。</div>
+    </div>
+</div>
+'''
         elif (game[i]['turn'] == 1):
-            html += '<p>CPU {}</p>'.format(game[i]["count"])
+            html += \
+'''
+<div class="chat_opposite">
+    <figure>
+    <img src="https://1.bp.blogspot.com/-fyYoL91_tQo/Wp0Nn-VLocI/AAAAAAABKiI/3J2ywEvlbwIhjFNsmF8qpluPOg2it_HAQCLcBGAs/s800/ai_kanabou_buki.png" />
+    </figure>
+    <div class="chat_opposite-text">
+    <div class="name">NPC</div>
+    <div class="text">{count}</div>
+    </div>
+</div>
+'''.format(count=game[i]["count"])
     return html
+
+####### @yumiya and @tanaka #######
+# def game_log(game):
+#     html = ''
+#     if (game is None):
+#         print('game is None')
+#         return html
+
+#     for i in range(len(game)):
+#         print(game[i])
+
+#     for i in range(len(game)):
+#         if (game[i]['turn'] == 0):
+#             if (i != 0) and ((game[i-1]["turn"] == 1) and (game[i]["turn"] == 0)):
+#                 pass
+#             elif (i != 0) and (game[i-1]["count"] == game[i]["count"]):
+#                 pass
+#             else:
+#                 if (game[i]["count"] == 0):
+#                     pass
+#                 else:
+#                     html += '<p>You {}</p>'.format(game[i]["count"])
+#         elif (game[i]['turn'] == 1):
+#             html += '<p>CPU {}</p>'.format(game[i]["count"])
+#     return html
 
 
 def hash_pwd(password, rounds=12):

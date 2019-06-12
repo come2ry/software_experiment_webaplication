@@ -1,0 +1,159 @@
+/* tanaka */
+
+.chat_container {
+  position:relative;
+  padding:0;
+  background: firebrick;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 20px auto;
+  font-size: 80%;
+  filter: drop-shadow(10px 10px 10px rgba(30,30,30,30.30));
+}
+
+.chat_container .chat_header {
+  background: #273246;
+  padding: 10px;
+  text-align: center;
+  font-size: 150%;
+  color: #ffffff;
+}
+
+.chat_container .chat_contents {
+  padding: 10px;
+  overflow: hidden;
+  line-height: 135%;
+}
+
+.chat_container .chat_scroll {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.chat_container .chat_opposite {
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 5px;
+  max-width: 80%;
+  clear: both;
+}
+
+.chat_container .chat_opposite figure {
+  width: 50px;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.chat_container .chat_opposite figure img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.chat_container .chat_opposite .chat_opposite-text {
+  margin-left: 70px;
+}
+
+.chat_container .chat_opposite .chat_opposite-text .name {
+  font-size: 70%;
+  color: #ffffff;
+}
+
+.chat_container .chat_opposite .text {
+  position: relative;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.chat_container .chat_opposite .text::after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -10px;
+  top: 10px;
+  border-right: 20px solid #ffffff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  content: '';
+}
+
+.chat_container .chat_me {
+  position: relative;
+  display: block;
+  margin: 5px 0;
+  max-width: 75%;
+  float: right;
+  margin-right: 15px;
+  clear: both;
+}
+
+.chat_container .chat_me .text {
+  padding: 10px;
+  background-color: #8de055;
+  border-radius: 20px;
+  margin: 0;
+  margin-left: 80px;
+}
+
+.chat_container .chat_me .text::after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -10px;
+  top: 10px;
+  border-left: 20px solid #8de055;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  content: '';
+}
+
+.chat_container .chat_me .date {
+  position: absolute;
+  display: block;
+  color: #ffffff;
+  width: 100px;
+  text-align: right;
+  left: -30px;
+  bottom: 0px;
+  font-size: 80%;
+  content: '';
+}
+
+.chat_container .form_send {
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  width: 100%;
+  bottom: 7px;
+}
+
+.chat_container .form_send .form_contents{
+  width: 100%;
+  padding: 10px;
+}
+
+.chat_container .form_send .send_btn {
+  width: 100%;
+  height: 80%;
+  color: #fff;
+  font-weight: bold;
+  background: #443;
+  text-align: center;
+  font-size: 10px;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.chat_container .form_send .send_btn:hover {
+  background: rgb(1, 109, 34);
+  cursor: pointer;
+}

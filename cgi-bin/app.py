@@ -38,6 +38,7 @@ class PageManager:
                 '/home/game': self.game,
                 '/logout': self.logout,
                 '/static/css/style.css': self.get_statics,
+                '/static/css/chat-style.css': self.get_statics,
                 '/static/bootstrap/css/bootstrap.min.css': self.get_statics,
                 '/static/js/jquery.pwdMeasure.min.js': self.get_statics,
                 '/static/js/script.js': self.get_statics,
@@ -165,7 +166,7 @@ class PageManager:
 
             if (game is None):
                 if (user['points'] < GAME_CONFIG['fee']):
-                    with open('../template/game-over.html', 'r') as fp:
+                    with open('../template/game-result.html', 'r') as fp:
                         html = fp.read()
                         html = html.replace('{message}', '持ち点がゲーム参加に必要な{}ポイントに足りていません。'.format(GAME_CONFIG['fee']))
                     body = [html.encode('utf-8')]
@@ -191,16 +192,18 @@ class PageManager:
                 my_count = game['my_count']
                 if (game['is_finished'] == 1):
                     point = my_count * GAME_CONFIG['mag']
-                    message = 'YOU WIN!!\n{}ポイント獲得！！'.format(point)
+                    message = 'YOU WIN！！\n{}ポイント獲得！！'.format(point)
                     update_user_points(self.user_id, user['points']+point)
+                    user_status = '現在の所有ポイントは{}ポイントです。'.format(str(user['points']+point))
 
                 elif (game['is_finished'] == -1):
                     message = 'YOU LOSE...'
-
+                    user_status = '現在の所有ポイントは{}ポイントです。'.format(str(user['points']))
                 
-                with open('../template/game-over.html', 'r') as fp:
+                with open('../template/game-result.html', 'r') as fp:
                     html = fp.read()
                     html = html.replace('{message}', message)
+                    html = html.replace('{user_status}', user_status)
                 body = [html.encode('utf-8')]
 
                 status = '200 OK'
@@ -258,7 +261,9 @@ class PageManager:
                             game['count'] += 1
                             self.sessions[self.session_id]['game'] += [dict(game.items())]
                         game['count'] += 1
+                        self.sessions[self.session_id]['game'] += [dict(game.items())]
 
+                    game['turn'] = -1
                     self.sessions[self.session_id]['game'] += [dict(game.items())]
 
                     game["turn"] = 0
@@ -272,32 +277,40 @@ class PageManager:
             self.sessions[self.session_id]['game'] += [dict(game.items())]
             gamelog = game_log(self.sessions[self.session_id].get('game', None))
         
-            message = '{}に到達したら負け！\nあなたのターンです。\nあと{}回カウンターを増やせます。'.format(game['MAX'], game['TURN_MAX']-game['turn_count'])
+            message = '{}に到達したら負け！<br>あなたのターンです。<br>あと{}回カウンターを増やせます。'.format(game['MAX'], game['TURN_MAX']-game['turn_count'])
             if (game['turn_count'] == 0):
                 input_tag = \
                         """
+                        <div class="form_contents">
                         <form method="POST" action='/home/game'>
-                            <input type="submit" id="plus" name="plus" value="+"/>
+                            <input class="send_btn" type="submit" id="plus" name="plus" value="+"/>
                         </form>
+                        </div>
                         """
             elif (game['turn_count'] >= TURN_MAX):
                 input_tag = \
                     """
+                    <div class="form_contents">
                     <form method="POST" action='/home/game'>
-                        <input type="submit" id="submit" name="submit" value='ターン終了'/>
-                    </font>
+                        <input class="send_btn" type="submit" id="submit" name="submit" value='ターン終了'/>
+                    </form>
+                    </div>
                     """
                 game['turn_count'] = 0
                 game['turn'] = -1
             else:
                 input_tag = \
                         """
+                        <div class="form_contents" style="width: 50%;">
                         <form method="POST" action='/home/game'>
-                            <input type="submit" id="plus" name="plus" value="+"/>
+                            <input class="send_btn" type="submit" id="submit" name="submit" value='ターン終了'/>
                         </form>
+                        </div>
+                        <div class="form_contents" style="width: 50%;">
                         <form method="POST" action='/home/game'>
-                            <input type="submit" id="submit" name="submit" value='ターン終了'/>
-                        </font>
+                            <input class="send_btn" type="submit" id="plus" name="plus" value="+"/>
+                        </form>
+                        </div>
                         """
     
             # print(message)
@@ -305,7 +318,9 @@ class PageManager:
             with open('../template/game.html', 'r', encoding='utf-8') as fp:
                 html = fp.read()
                 html = html.replace('{message}', message)
-                html = html.replace('{count}', str(game['count']))
+                # html = html.replace('{count}', str(game['count']))
+                html = html.replace('{MAX}', str(game['MAX']))
+                html = html.replace('{TURN_MAX}', str(game['TURN_MAX']))
                 html = html.replace('{input_tag}', input_tag)
                 html = html.replace('{log}', str(gamelog))
             body = [html.encode('utf-8')]
@@ -421,7 +436,7 @@ class PageManager:
                     self.user_id = res['id']
                     print("認証成功")
                     # set_user_session(self.session_id, res['id'])
-                    error_dict = {'error': 'success', 'font_color': 'blue'}
+                    error_dict = {'error': 'login success', 'font_color': 'green'}
                     to = '/home'
 
                 else:
@@ -460,18 +475,18 @@ class PageManager:
 
             if (res is not None):
                 print("すでにユーザーが存在\nログイン画面へ遷移")
-                error_dict = {'error': 'already exiets', 'font_color': 'red'}
+                error_dict = {'error': 'user already exiets', 'font_color': 'red'}
                 redirect_url = home_url
 
             else:
                 if (set_user(name, pwd)):
                     print("ユーザーの作成に成功")
-                    error_dict = {'error': 'success', 'font_color': 'blue'}
+                    error_dict = {'error': 'signup success', 'font_color': 'green'}
                     redirect_url = home_url
 
                 else:
                     print("ユーザーの作成に失敗")
-                    error_dict = {'error': 'signup denied', 'font_color': 'red'}
+                    error_dict = {'error': 'signup failed', 'font_color': 'red'}
                     redirect_url = home_url
 
         except Exception as e:

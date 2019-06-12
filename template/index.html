@@ -15,8 +15,10 @@
         <script src="../static/js/script.js?type=javascript"></script>
     </head>
     <body>
-        <h1>{error_tag}</h1>
-        <div class="container login-container">
+        <div class="container login-container" style="position: relative;">
+            <div style="position: absolute; display: flex; flex-wrap: wrap; top: 10px; height: 60px; width: 100%; z-index: 100;">
+                <h1 style="margin-left: auto; margin-right: auto; text-shadow:0.7px 0.7px 0.7px #ffffff;">{error_tag}</h1>
+            </div>
             <div class="row">
                 <div class="col-md-6 login-form-1">
                     <h3>Login</h3>
@@ -43,10 +45,10 @@
                             <input type="text" class="form-control" placeholder="Your Name *" name="name" value="" required/>
                         </div>
                         <!-- password strength indicator -->
-                        <p id="pm-indicator"></p>
                         <div class="form-group">
                             <input type="password" id="pm-input" class="form-control" placeholder="Your Password *" name="password" value="" required/>
                         </div>
+                        <font color="white"><p id="pm-indicator"></p></font>
                         <div class="form-group">
                             <input type="submit" class="btnSubmit" name="signup" value="signup" />
                         </div>

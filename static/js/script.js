@@ -32,7 +32,6 @@ jQuery(function($){
     //     })
     // });
 
-
     // tanaka password strength checker
     var $form = $("#pm-form");
     const message = "パスワードが一致していないもしくはパスワードが弱すぎます。"
@@ -64,6 +63,8 @@ jQuery(function($){
             formCancelSubmit($form, message);
         }
     });
+
+    $('#chat_scroll').animate({scrollTop: $('#chat_scroll')[0].scrollHeight}, 'fast');
 });
 
 // tanaka

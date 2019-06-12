@@ -12,15 +12,12 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="../static/js/jquery.pwdMeasure.min.js?type=javascript"></script>
         <script src="../static/js/script.js?type=javascript"></script>
     </head>
     <body>
-        <!-- tanaka -->
         <div class="chat_container">
             <div class="chat_header">
-            <font color="red">{MAX}</font>をカウントすると負け<br>
-            1ターンで{TURN_MAX}カウントまで可能
+                GAME RESULT
             </div>
 
             <div id="chat_scroll" class="chat_contents chat_scroll">
@@ -30,7 +27,21 @@
                     </figure>
                     <div class="chat_opposite-text">
                         <div class="name">NPC</div>
-                        <div class="text">ゲームをしましょう。{message}</div>
+                        <div class="text">
+                            {message}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat_opposite">
+                    <figure>
+                        <img src="https://1.bp.blogspot.com/-fyYoL91_tQo/Wp0Nn-VLocI/AAAAAAABKiI/3J2ywEvlbwIhjFNsmF8qpluPOg2it_HAQCLcBGAs/s800/ai_kanabou_buki.png" />
+                    </figure>
+                    <div class="chat_opposite-text">
+                        <div class="name">NPC</div>
+                        <div class="text">
+                            {user_status}
+                        </div>
                     </div>
                 </div>
 
@@ -44,13 +55,16 @@
                     </div>
                 </div>
             
-                {log}
             </div>
             <div class='form_send'>
-                {input_tag}
+                <div class="form_contents" style="width: 50%;">
+                    <input class="send_btn" type="button" onclick="location.href='/home'" value="ホームへ戻る"/>
+                </div>
+                <div class="form_contents" style="width: 50%;">
+                    <input class="send_btn" type="button" onclick="location.href='/home/game'" value="ゲームへ参加"/>
+                </div>
             </div>
         </div>
-        <!-- /tanaka -->
     </body>
     <footer>
     </footer>
