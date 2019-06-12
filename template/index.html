@@ -1,16 +1,21 @@
+<!-- tanaka -->
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Cache-Control" content="no-cache">
         <title>GAME FOREST</title>
         <link rel="stylesheet" type="text/css" href="../static/css/style.css?type=css">
-        <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css?type=css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,700">
-
-
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="../static/js/jquery.pwdMeasure.min.js?type=javascript"></script>
+        <script src="../static/js/script.js?type=javascript"></script>
     </head>
     <body>
-        <p>{error}</p>
+        <h1>{error_tag}</h1>
         <div class="container login-container">
             <div class="row">
                 <div class="col-md-6 login-form-1">
@@ -23,27 +28,27 @@
                             <input type="password" class="form-control" placeholder="Your Password *" name="password" value="" required/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="login" name="login" value="login" />
+                            <input type="submit" class="btnSubmit" name="login" value="login" />
                         </div>
                         <div class="form-group">
-                            <a href="#" class="forgot">Forget Password?</a>
+                            <a href="#" class="btnForgetPwd" name="forgot">Forget Password?</a>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-6 login-form-2">
-                    <div class="login-logo">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                    </div>
                     <h3>Signup</h3>
-                    <form method="POST" action="/signup">
+                    <!-- password strength checker -->
+                    <form id="pm-form" method="POST" action="/signup">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Your Name *" name="name" value="" required/>
                         </div>
+                        <!-- password strength indicator -->
+                        <p id="pm-indicator"></p>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" name="password" value="" required/>
+                            <input type="password" id="pm-input" class="form-control" placeholder="Your Password *" name="password" value="" required/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="signup" name="signup" value="signup" />
+                            <input type="submit" class="btnSubmit" name="signup" value="signup" />
                         </div>
                     </form>
                 </div>
@@ -53,3 +58,4 @@
     <footer>
     </footer>
 </html>
+<!-- /tanaka -->
