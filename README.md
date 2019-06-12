@@ -12,6 +12,7 @@ MAX値をカウントした方が負けとなる。勝者にはゲーム終了�
 >“Beware that, when fighting monsters, you yourself do not become a monster… for when you gaze long into the abyss. The abyss gazes also into you.”
 >怪物と戦う者は、その過程で自分自身も怪物になることのないように気をつけなくてはならない。
 >深淵をのぞく時、深淵もまたこちらをのぞいているのだ。
+>
 >    -フリードリヒ・ニーチェ （1844年～1900年）
 
 ## Requirement
