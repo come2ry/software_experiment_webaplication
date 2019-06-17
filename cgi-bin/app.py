@@ -277,7 +277,7 @@ class PageManager:
             self.sessions[self.session_id]['game'] += [dict(game.items())]
             gamelog = game_log(self.sessions[self.session_id].get('game', None))
         
-            message = '{}に到達したら負け。<br>1ターンで{}回カウンターを増やせます。'.format(game['MAX'], game['TURN_MAX']-game['turn_count'])
+            message = '{}に到達したら負け。<br>1ターンで{}回カウンターを増やせます。'.format(game['MAX'], game['TURN_MAX'])
             if (game['turn_count'] == 0):
                 input_tag = \
                         """
